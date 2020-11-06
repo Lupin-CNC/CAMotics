@@ -1,0 +1,67 @@
+set(headers
+    AboutDialog.h
+    BBCtrlAPI.h
+    CAMDialog.h
+    CAMLayerDialog.h
+    ClickWidget.h
+    ColorComponent.h
+    ConnectDialog.h
+    ConsoleWriter.h
+    DonateDialog.h
+    ExportDialog.h
+    FileDialog.h
+    FileTabManager.h
+    FindDialog.h
+    GCodeHighlighter.h
+    GLView.h
+    Highlighter.h
+    NCEdit.h
+    NewDialog.h
+    NewProjectDialog.h
+    ProjectModel.h
+    QApplication.h
+    QTextDevice.h
+    QtApp.h
+    QtWin.h
+    Settings.h
+    SettingsDialog.h
+    SidebarWidget.h
+    TPLHighlighter.h
+    ToolDialog.h
+    ToolGraphicsItem.h
+    ToolScene.h
+    UploadDialog.h)
+
+set(sources
+    AboutDialog.cpp
+    BBCtrlAPI.cpp
+    CAMDialog.cpp
+    CAMLayerDialog.cpp
+    ClickWidget.cpp
+    ConnectDialog.cpp
+    ConsoleWriter.cpp
+    DonateDialog.cpp
+    ExportDialog.cpp
+    FileDialog.cpp
+    FileTabManager.cpp
+    FindDialog.cpp
+    GCodeHighlighter.cpp
+    GLView.cpp
+    Highlighter.cpp
+    NCEdit.cpp
+    NewDialog.cpp
+    NewProjectDialog.cpp
+    ProjectModel.cpp
+    QApplication.cpp
+    QtApp.cpp
+    QtWin.cpp
+    Settings.cpp
+    SettingsDialog.cpp
+    SidebarWidget.cpp
+    TPLHighlighter.cpp
+    ToolDialog.cpp
+    ToolGraphicsItem.cpp
+    ToolScene.cpp
+    UploadDialog.cpp)
+
+add_library(camotics-qt OBJECT "${headers}" "${sources}")
