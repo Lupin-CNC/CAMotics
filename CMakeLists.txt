@@ -1,8 +1,43 @@
 cmake_minimum_required(VERSION 3.15)
 cmake_policy(SET CMP0091 NEW)
-project(camotics)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC OFF)
+set(CMAKE_AUTORCC OFF)
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+
+project(Camotics)
+set (Camotics_VERSION_MAJOR "1")
+set (Camotics_VERSION_MINOR "2")
+set (Camotics_VERSION_PATCH "1")
+set (PROJECT_VERSION "${Camotics_VERSION_MAJOR}.${Camotics_VERSION_MINOR}.${Camotics_VERSION_PATCH}")
+
+include(QtCamoticsConfig)
+message(STATUS "Qt version: ${QT_VERSION}")
+message(STATUS "Qt spec: ${QT_MKSPEC}")
 
 find_package(Cbang CONFIG REQUIRED)
-find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
+find_package(Qt5 ${QT_VERSION} 
+    COMPONENTS 
+        Core
+        Gui
+        OpenGL
+        Widgets
+        WebSockets
+    REQUIRED
+    HINTS
+        ${QT_LIBRARY_HINTS}
+)
+
+
+
+# qt5_add_resources(Project_Resources_RCC
+#    ${Project_Resources}
+# )
+# set_property(SOURCE ${Project_Resources_RCC}
+#    PROPERTY SKIP_AUTOGEN ON
+#)
 
 add_subdirectory(src)

@@ -1,5 +1,9 @@
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}" "${camotics_SOURCE_DIR}/src")
+
+include_directories(
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+    "${Cbang_INCLUDE_DIR}" 
+    "${Camotics_SOURCE_DIR}/src")
 
 add_subdirectory(camotics)
 
@@ -17,4 +21,24 @@ add_executable(
   $<TARGET_OBJECTS:camotics-value>
   $<TARGET_OBJECTS:camotics-view>
   "camotics.cpp")
-target_link_libraries(camotics PRIVATE "${CBANG_LIBRARIES}")
+
+target_compile_definitions(camotics-main PRIVATE USING_CBANG)
+target_compile_definitions(camotics-contour PRIVATE USING_CBANG)
+target_compile_definitions(camotics-machine PRIVATE USING_CBANG)
+target_compile_definitions(camotics-opt PRIVATE USING_CBANG)
+target_compile_definitions(camotics-probe PRIVATE USING_CBANG)
+target_compile_definitions(camotics-project PRIVATE USING_CBANG)
+target_compile_definitions(camotics-qt PRIVATE USING_CBANG)
+target_compile_definitions(camotics-render PRIVATE USING_CBANG)
+target_compile_definitions(camotics-sim PRIVATE USING_CBANG)
+target_compile_definitions(camotics-value PRIVATE USING_CBANG)
+target_compile_definitions(camotics-view PRIVATE USING_CBANG)
+target_compile_definitions(camotics PRIVATE USING_CBANG)
+
+# target_link_libraries(camotics PRIVATE 
+#    Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL
+#    "${CBANG_LIBRARIES}")
+
+target_link_libraries(camotics-qt PRIVATE
+    Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL Qt5::WebSockets
+    "${CBANG_LIBRARIES}")

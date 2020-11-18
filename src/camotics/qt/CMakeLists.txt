@@ -64,4 +64,23 @@ set(sources
     ToolScene.cpp
     UploadDialog.cpp)
 
+qt5_wrap_ui(sources
+    ${CMAKE_SOURCE_DIR}/qt/about_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/cam_layer_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/connect_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/export_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/new_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/settings_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/upload_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/cam_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/camotics.ui
+    ${CMAKE_SOURCE_DIR}/qt/donate_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/find_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/new_project_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/tool_dialog.ui
+)
 add_library(camotics-qt OBJECT "${headers}" "${sources}")
+target_include_directories(
+    camotics-qt PRIVATE
+    "${Camotics_BINARY_DIR}/src/camotics/qt"
+)
