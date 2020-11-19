@@ -23,7 +23,7 @@ add_executable(
     "camotics.cpp")
 target_compile_definitions(CAMotics PRIVATE USING_CBANG)
 target_link_libraries(CAMotics PRIVATE
-    Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL
+    Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL Qt5::Network Qt5::WebSockets
     ${CBANG_LIBRARIES} )
 
 target_compile_definitions(camotics-main PRIVATE USING_CBANG)

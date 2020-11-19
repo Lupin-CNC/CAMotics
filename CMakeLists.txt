@@ -25,6 +25,7 @@ find_package(Qt5 ${QT_VERSION}
         OpenGL
         Widgets
         WebSockets
+        Network
     REQUIRED
     HINTS
         ${QT_LIBRARY_HINTS}
