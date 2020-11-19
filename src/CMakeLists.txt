@@ -5,10 +5,31 @@ include_directories(
     "${Cbang_INCLUDE_DIR}" 
     "${Camotics_SOURCE_DIR}/src")
 
-add_subdirectory(camotics)
+add_subdirectory(gcode)
+add_library(Gcode
+    $<TARGET_OBJECTS:gcode-main>
+    $<TARGET_OBJECTS:gcode-ast>
+    $<TARGET_OBJECTS:gcode-interp>
+    $<TARGET_OBJECTS:gcode-machine>
+    $<TARGET_OBJECTS:gcode-parse>
+    $<TARGET_OBJECTS:gcode-plan>
+)
+target_compile_definitions(gcode-main PRIVATE USING_CBANG)
+target_compile_definitions(gcode-ast PRIVATE USING_CBANG)
+target_compile_definitions(gcode-interp PRIVATE USING_CBANG)
+target_compile_definitions(gcode-machine PRIVATE USING_CBANG)
+target_compile_definitions(gcode-parse PRIVATE USING_CBANG)
+target_compile_definitions(gcode-plan PRIVATE USING_CBANG)
+target_compile_definitions(Gcode PRIVATE USING_CBANG)
+target_link_libraries(Gcode PRIVATE
+    ${CBANG_LIBRARIES}
+)
 
-add_executable(
-    CAMotics
+add_executable(gcodetool "gcodetool.cpp" )
+target_link_libraries(gcodetool PRIVATE Gcode )
+
+add_subdirectory(camotics)
+add_executable(CAMotics
     $<TARGET_OBJECTS:camotics-main>
     $<TARGET_OBJECTS:camotics-contour>
     $<TARGET_OBJECTS:camotics-machine>
@@ -23,8 +44,10 @@ add_executable(
     "camotics.cpp")
 target_compile_definitions(CAMotics PRIVATE USING_CBANG)
 target_link_libraries(CAMotics PRIVATE
+    Gcode
     Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL Qt5::Network Qt5::WebSockets
-    ${CBANG_LIBRARIES} )
+    ${CBANG_LIBRARIES} 
+)
 
 target_compile_definitions(camotics-main PRIVATE USING_CBANG)
 target_compile_definitions(camotics-contour PRIVATE USING_CBANG)
