@@ -14,11 +14,10 @@ set (Camotics_VERSION_MINOR "2")
 set (Camotics_VERSION_PATCH "1")
 set (PROJECT_VERSION "${Camotics_VERSION_MAJOR}.${Camotics_VERSION_MINOR}.${Camotics_VERSION_PATCH}")
 
-include(QtCamoticsConfig)
-message(STATUS "Qt version: ${QT_VERSION}")
-message(STATUS "Qt spec: ${QT_MKSPEC}")
+find_package( Cbang  REQUIRED )
+message(STATUS "Cbang libs: ${CBANG_LIBRARIES}")
 
-find_package(Cbang CONFIG REQUIRED)
+include(QtCamoticsConfig)
 find_package(Qt5 ${QT_VERSION} 
     COMPONENTS 
         Core
@@ -30,8 +29,8 @@ find_package(Qt5 ${QT_VERSION}
     HINTS
         ${QT_LIBRARY_HINTS}
 )
-
-
+message(STATUS "Qt version: ${QT_VERSION}")
+message(STATUS "Qt spec: ${QT_MKSPEC}")
 
 # qt5_add_resources(Project_Resources_RCC
 #    ${Project_Resources}

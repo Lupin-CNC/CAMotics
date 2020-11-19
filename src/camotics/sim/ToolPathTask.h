@@ -45,7 +45,9 @@ namespace GCode {
   class MachineInterface;
 }
 
+#ifdef HAVE_V8
 namespace tplang {class TPLContext;}
+#endif
 
 namespace CAMotics {
   namespace Project {class Project;}
@@ -66,7 +68,9 @@ namespace CAMotics {
     cb::SmartPointer<cb::Subprocess> proc;
     cb::SmartPointer<cb::Thread> logCopier;
 
+#ifdef HAVE_V8
     cb::SmartPointer<tplang::TPLContext> tplCtx;
+#endif
 
     public:
     ToolPathTask(const Project::Project &project);
