@@ -1,0 +1,64 @@
+set(headers
+    AABBView.h
+    AxesView.h
+    AxisView.h
+    Color.h
+    CuboidView.h
+    GLBox.h
+    GLComposite.h
+    GLConic.h
+    GLContext.h
+    GLCylinder.h
+    GLDisk.h
+    GLEnum.h
+    GLObject.h
+    GLProgram.h
+    GLScene.h
+    GLShader.h
+    GLSphere.h
+    GradientBackground.h
+    Lines.h
+    MachinePartView.h
+    MachineView.h
+    Mesh.h
+    Tool2DView.h
+    ToolPathView.h
+    ToolView.h
+    Transform.h
+    VBO.h
+    View.h
+    ViewPort.h
+)
+set(sources
+    AABBView.cpp
+    AxesView.cpp
+    AxisView.cpp
+    Color.cpp
+    CuboidView.cpp
+    GLBox.cpp
+    GLComposite.cpp
+    GLConic.cpp
+    GLContext.cpp
+    GLCylinder.cpp
+    GLDisk.cpp
+    GLProgram.cpp
+    GLScene.cpp
+    GLShader.cpp
+    GLSphere.cpp
+    GradientBackground.cpp
+    Lines.cpp
+    MachinePartView.cpp
+    MachineView.cpp
+    Mesh.cpp
+    Tool2DView.cpp
+    ToolPathView.cpp
+    ToolView.cpp
+    Transform.cpp
+    VBO.cpp
+    View.cpp
+    ViewPort.cpp
+)
+add_library(camotics-view OBJECT "${headers}" "${sources}")
+target_compile_definitions(camotics-view PRIVATE USING_CBANG)
+target_link_libraries(camotics-view PRIVATE
+    Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL Qt5::WebSockets )

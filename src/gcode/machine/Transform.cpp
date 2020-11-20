@@ -122,7 +122,7 @@ Vector3D Transform::transform(const Vector3D &p) const {
   return (*this * Vector4D(p, 1)).slice<3>();
 }
 
-
+#ifdef HAVE_V8
 void Transform::read(const js::Value &value) {
   if (!value.isArray() || value.length() != 4)
     THROW("Transform expected 4 rows");
@@ -136,6 +136,7 @@ void Transform::read(const js::Value &value) {
       data[i][j] = row->getNumber(j);
   }
 }
+#endif
 
 
 void Transform::read(const JSON::Value &value) {

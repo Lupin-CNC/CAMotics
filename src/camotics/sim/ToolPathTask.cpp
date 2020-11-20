@@ -24,8 +24,10 @@
 #include <camotics/project/Project.h>
 #include <camotics/sim/Simulation.h>
 
+#ifdef HAVE_V8
 #include <tplang/TPLContext.h>
 #include <tplang/Interpreter.h>
+#endif
 
 #include <gcode/interp/Interpreter.h>
 
@@ -46,7 +48,9 @@
 #include <cbang/log/AsyncCopyStreamToLog.h>
 #include <cbang/io/StringInputSource.h>
 
+#ifdef HAVE_V8
 #include <cbang/js/JSInterrupted.h>
+#endif
 
 #include <boost/ref.hpp>
 #include <boost/iostreams/filtering_stream.hpp>
@@ -164,7 +168,7 @@ void ToolPathTask::runTPL(const string &filename) {
 
 void ToolPathTask::runTPLInProcess(const string &filename) {
   Task::begin("Running TPL");
-
+#ifdef HAVE_V8
   tplCtx = new tplang::TPLContext(SmartPointer<ostream>::Phony(&cerr), machine);
   tplCtx->setSim(JSON::Reader::parse(StringInputSource(simJSON)));
 
@@ -181,6 +185,7 @@ void ToolPathTask::runTPLInProcess(const string &filename) {
   errors++;
 
   tplCtx.release();
+#endif
 }
 
 
@@ -220,5 +225,7 @@ void ToolPathTask::interrupt() {
   Task::interrupt();
   if (proc.isSet()) try {proc->kill(true);} CATCH_ERROR;
   if (logCopier.isSet()) logCopier->stop();
+#ifdef HAVE_V8
   if (tplCtx.isSet()) tplCtx->interrupt();
+#endif
 }

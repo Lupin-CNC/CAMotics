@@ -22,14 +22,18 @@
 
 #include <cbang/geom/Matrix.h>
 #include <cbang/json/Serializable.h>
-#include <cbang/js/Value.h>
+#ifdef HAVE_V8
+    #include <cbang/js/Value.h>
+#endif
 
 
 namespace GCode {
   class Transform : public cb::Matrix4x4D, public cb::JSON::Serializable {
   public:
     Transform(const cb::Matrix4x4D &m) : cb::Matrix4x4D(m) {}
+#ifdef HAVE_V8
     Transform(const cb::js::Value &value) {read(value);}
+#endif
     Transform(const cb::JSON::Value &value) {read(value);}
     Transform() {toIdentity();}
 
@@ -39,8 +43,9 @@ namespace GCode {
     void reflect(const cb::Vector3D &o);
 
     cb::Vector3D transform(const cb::Vector3D &p) const;
-
+#ifdef HAVE_V8
     void read(const cb::js::Value &value);
+#endif
 
     // From cb::JSON::Serializable
     void read(const cb::JSON::Value &value);

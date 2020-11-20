@@ -67,3 +67,6 @@ build.ninja
 *.toc
 
 /examples
+
+# KDevelop
+*.kdev4

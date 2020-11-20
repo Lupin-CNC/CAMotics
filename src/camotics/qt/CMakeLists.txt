@@ -1,0 +1,89 @@
+set(headers
+    AboutDialog.h
+    BBCtrlAPI.h
+    CAMDialog.h
+    CAMLayerDialog.h
+    ClickWidget.h
+    ColorComponent.h
+    ConnectDialog.h
+    ConsoleWriter.h
+    DonateDialog.h
+    ExportDialog.h
+    FileDialog.h
+    FileTabManager.h
+    FindDialog.h
+    GCodeHighlighter.h
+    GLView.h
+    Highlighter.h
+    NCEdit.h
+    NewDialog.h
+    NewProjectDialog.h
+    ProjectModel.h
+    QApplication.h
+    QTextDevice.h
+    QtApp.h
+    QtWin.h
+    Settings.h
+    SettingsDialog.h
+    SidebarWidget.h
+    TPLHighlighter.h
+    ToolDialog.h
+    ToolGraphicsItem.h
+    ToolScene.h
+    UploadDialog.h
+)
+set(sources
+    AboutDialog.cpp
+    BBCtrlAPI.cpp
+    CAMDialog.cpp
+    CAMLayerDialog.cpp
+    ClickWidget.cpp
+    ConnectDialog.cpp
+    ConsoleWriter.cpp
+    DonateDialog.cpp
+    ExportDialog.cpp
+    FileDialog.cpp
+    FileTabManager.cpp
+    FindDialog.cpp
+    GCodeHighlighter.cpp
+    GLView.cpp
+    Highlighter.cpp
+    NCEdit.cpp
+    NewDialog.cpp
+    NewProjectDialog.cpp
+    ProjectModel.cpp
+    QApplication.cpp
+    QtApp.cpp
+    QtWin.cpp
+    Settings.cpp
+    SettingsDialog.cpp
+    SidebarWidget.cpp
+    TPLHighlighter.cpp
+    ToolDialog.cpp
+    ToolGraphicsItem.cpp
+    ToolScene.cpp
+    UploadDialog.cpp
+)
+qt5_wrap_ui(sources
+    ${CMAKE_SOURCE_DIR}/qt/about_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/cam_layer_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/connect_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/export_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/new_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/settings_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/upload_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/cam_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/camotics.ui
+    ${CMAKE_SOURCE_DIR}/qt/donate_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/find_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/new_project_dialog.ui
+    ${CMAKE_SOURCE_DIR}/qt/tool_dialog.ui
+)
+add_library(camotics-qt OBJECT "${headers}" "${sources}")
+target_include_directories( camotics-qt PRIVATE 
+    "${Camotics_BINARY_DIR}/src/camotics/qt"
+)
+target_compile_definitions(camotics-qt PRIVATE USING_CBANG)
+target_link_libraries(camotics-qt PRIVATE
+    Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL Qt5::WebSockets 
+)
