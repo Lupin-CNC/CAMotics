@@ -27,6 +27,12 @@ add_library(DXF STATIC
     dxflib/dl_dxf.cpp dxflib/dl_writer_ascii.cpp )
 target_include_directories(DXF PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/dxflib )
 
+qt5_add_resources(CAMotics_Resources_RCC
+    ${CMAKE_SOURCE_DIR}/qt/camotics.qrc
+)
+set_property(SOURCE ${CAMotics_Resources_RCC}
+    PROPERTY SKIP_AUTOGEN ON
+)
 add_subdirectory(cairo)
 add_subdirectory(stl)
 add_subdirectory(dxf)
@@ -48,7 +54,9 @@ add_executable(CAMotics
     $<TARGET_OBJECTS:camotics-dxf>
     "${CMAKE_CURRENT_BINARY_DIR}/build_info.cpp"
     "${CMAKE_CURRENT_BINARY_DIR}/resources.cpp"
-    "camotics.cpp")
+    "camotics.cpp"
+    ${CAMotics_Resources_RCC}
+)
 target_compile_definitions(CAMotics PRIVATE USING_CBANG)
 target_link_libraries(CAMotics PRIVATE
     Gcode DXF

@@ -4,7 +4,7 @@ cmake_policy(SET CMP0091 NEW)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC OFF)
-set(CMAKE_AUTORCC OFF)
+# set(CMAKE_AUTORCC ON)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -32,12 +32,5 @@ find_package(Qt5 ${QT_VERSION}
 )
 message(STATUS "Qt version: ${QT_VERSION}")
 message(STATUS "Qt spec: ${QT_MKSPEC}")
-
-# qt5_add_resources(Project_Resources_RCC
-#    ${Project_Resources}
-# )
-# set_property(SOURCE ${Project_Resources_RCC}
-#    PROPERTY SKIP_AUTOGEN ON
-#)
 
 add_subdirectory(src)
