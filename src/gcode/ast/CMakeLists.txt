@@ -32,3 +32,4 @@ set(sources
     Word.cpp
 )
 add_library(gcode-ast OBJECT "${headers}" "${sources}")
+target_compile_definitions(gcode-ast PRIVATE USING_CBANG)

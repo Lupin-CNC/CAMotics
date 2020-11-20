@@ -32,3 +32,4 @@ set(sources
     TransformStack.cpp
 )
 add_library(gcode-machine OBJECT "${headers}" "${sources}")
+target_compile_definitions(gcode-machine PRIVATE USING_CBANG)

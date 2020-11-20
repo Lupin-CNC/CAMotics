@@ -27,8 +27,8 @@ set(headers
     Transform.h
     VBO.h
     View.h
-    ViewPort.h)
-
+    ViewPort.h
+)
 set(sources
     AABBView.cpp
     AxesView.cpp
@@ -56,6 +56,9 @@ set(sources
     Transform.cpp
     VBO.cpp
     View.cpp
-    ViewPort.cpp)
-
+    ViewPort.cpp
+)
 add_library(camotics-view OBJECT "${headers}" "${sources}")
+target_compile_definitions(camotics-view PRIVATE USING_CBANG)
+target_link_libraries(camotics-view PRIVATE
+    Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL Qt5::WebSockets )

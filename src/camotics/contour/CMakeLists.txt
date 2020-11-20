@@ -43,3 +43,4 @@ set(sources
     VertexSlice.cpp)
 
 add_library(camotics-contour OBJECT "${headers}" "${sources}")
+target_compile_definitions(camotics-contour PRIVATE USING_CBANG)

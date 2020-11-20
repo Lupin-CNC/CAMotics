@@ -31,3 +31,4 @@ set(sources
     SetCommand.cpp
 )
 add_library(gcode-plan OBJECT "${headers}" "${sources}")
+target_compile_definitions(gcode-plan PRIVATE USING_CBANG)

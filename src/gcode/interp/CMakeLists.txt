@@ -25,3 +25,4 @@ set(sources
     SubroutineLoader.cpp
 )
 add_library(gcode-interp OBJECT "${headers}" "${sources}")
+target_compile_definitions(gcode-interp PRIVATE USING_CBANG)

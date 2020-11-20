@@ -45,5 +45,5 @@ set(sources
     ToolTable.cpp
     Units.cpp
 )
-
 add_library(gcode-main OBJECT "${headers}" "${sources}")
+target_compile_definitions(gcode-main PRIVATE USING_CBANG)

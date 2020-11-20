@@ -16,8 +16,8 @@ set(headers
     Sweep.h
     ToolPathTask.h
     ToolSweep.h
-    Workpiece.h)
-
+    Workpiece.h
+)
 set(sources
     AABB.cpp
     AABBTree.cpp
@@ -34,6 +34,7 @@ set(sources
     Sweep.cpp
     ToolPathTask.cpp
     ToolSweep.cpp
-    Workpiece.cpp)
-
+    Workpiece.cpp
+)
 add_library(camotics-sim OBJECT "${headers}" "${sources}")
+target_compile_definitions(camotics-sim PRIVATE USING_CBANG)

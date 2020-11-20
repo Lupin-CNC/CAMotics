@@ -30,8 +30,8 @@ set(headers
     ToolDialog.h
     ToolGraphicsItem.h
     ToolScene.h
-    UploadDialog.h)
-
+    UploadDialog.h
+)
 set(sources
     AboutDialog.cpp
     BBCtrlAPI.cpp
@@ -62,8 +62,8 @@ set(sources
     ToolDialog.cpp
     ToolGraphicsItem.cpp
     ToolScene.cpp
-    UploadDialog.cpp)
-
+    UploadDialog.cpp
+)
 qt5_wrap_ui(sources
     ${CMAKE_SOURCE_DIR}/qt/about_dialog.ui
     ${CMAKE_SOURCE_DIR}/qt/cam_layer_dialog.ui
@@ -80,7 +80,10 @@ qt5_wrap_ui(sources
     ${CMAKE_SOURCE_DIR}/qt/tool_dialog.ui
 )
 add_library(camotics-qt OBJECT "${headers}" "${sources}")
-target_include_directories(
-    camotics-qt PRIVATE
+target_include_directories( camotics-qt PRIVATE 
     "${Camotics_BINARY_DIR}/src/camotics/qt"
+)
+target_compile_definitions(camotics-qt PRIVATE USING_CBANG)
+target_link_libraries(camotics-qt PRIVATE
+    Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL Qt5::WebSockets 
 )

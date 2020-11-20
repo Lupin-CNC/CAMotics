@@ -23,3 +23,4 @@ set(sources Application.cpp CommandLineApp.cpp ConcurrentTaskManager.cpp
             Grid.cpp SHA256.cpp Task.cpp)
 
 add_library(camotics-main OBJECT "${headers}" "${sources}")
+target_compile_definitions(camotics-main PRIVATE USING_CBANG)
