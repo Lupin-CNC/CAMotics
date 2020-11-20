@@ -5,6 +5,9 @@ include_directories(
     "${Cbang_INCLUDE_DIR}" 
     "${Camotics_SOURCE_DIR}/src")
 
+configure_file("build_info.cpp.in" "${CMAKE_CURRENT_BINARY_DIR}/build_info.cpp" @ONLY)
+configure_file("resources.cpp.in" "${CMAKE_CURRENT_BINARY_DIR}/resources.cpp" @ONLY)
+
 add_subdirectory(gcode)
 add_library(Gcode STATIC
     $<TARGET_OBJECTS:gcode-main>
@@ -47,6 +50,8 @@ add_executable(CAMotics
     $<TARGET_OBJECTS:camotics-cairo>
     $<TARGET_OBJECTS:camotics-stl>
     $<TARGET_OBJECTS:camotics-dxf>
+    "${CMAKE_CURRENT_BINARY_DIR}/build_info.cpp"
+    "${CMAKE_CURRENT_BINARY_DIR}/resources.cpp"
     "camotics.cpp")
 target_compile_definitions(CAMotics PRIVATE USING_CBANG)
 target_link_libraries(CAMotics PRIVATE

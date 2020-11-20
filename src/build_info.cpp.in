@@ -1,0 +1,29 @@
+#include <cbang/Info.h>
+#include <cbang/String.h>
+#include <cbang/util/CompilerInfo.h>
+
+using namespace cb;
+
+namespace CAMotics {
+namespace BuildInfo {
+void addBuildInfo(const char *category) {
+    Info &info = Info::instance();
+
+    info.add(category, "Version",   "1.2.1");
+    info.add(category, "Author",    "Joseph Coffland <joseph@cauldrondevelopment.com>");
+    info.add(category, "Org",       "Cauldron Development LLC");
+    info.add(category, "Copyright", "2011-2019, Joseph Coffland");
+    info.add(category, "Homepage",  "https://camotics.org/");
+    info.add(category, "License",   "https://www.gnu.org/licenses/gpl-2.0.txt");
+    info.add(category, "Date",      __DATE__);
+    info.add(category, "Time",      __TIME__);
+    info.add(category, "Revision", "a826d9a983c15242b7799911d4b5f0930e9b2c71");
+    info.add(category, "Branch",   "cmake");
+    info.add(category, "Compiler", COMPILER);
+    info.add(category, "Options",  "-faligned-new -std=c++11 -fsigned-char -Wno-deprecated-declarations -ffunction-sections -fdata-sections -O3 -funroll-loops -fno-pie -fPIC");
+    info.add(category, "Platform", "linux 4.13.1-gentoo");
+    info.add(category, "Bits",     String(COMPILER_BITS));
+    info.add(category, "Mode",     "Release");
+  }
+} // namespace BuildInfo
+} // namespace CAMotics
