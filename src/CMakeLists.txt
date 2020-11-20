@@ -21,14 +21,22 @@ target_compile_definitions(gcode-machine PRIVATE USING_CBANG)
 target_compile_definitions(gcode-parse PRIVATE USING_CBANG)
 target_compile_definitions(gcode-plan PRIVATE USING_CBANG)
 target_compile_definitions(Gcode PRIVATE USING_CBANG)
-target_link_libraries(Gcode PRIVATE
-    ${CBANG_LIBRARIES}
-)
-
 add_executable(gcodetool "gcodetool.cpp" )
 target_link_libraries(gcodetool PRIVATE Gcode )
 
+add_library(DXF STATIC 
+    dxflib/dl_attributes.h dxflib/dl_codes.h dxflib/dl_creationadapter.h
+    dxflib/dl_creationinterface.h dxflib/dl_dxf.h dxflib/dl_entities.h
+    dxflib/dl_exception.h dxflib/dl_extrusion.h dxflib/dl_global.h
+    dxflib/dl_writer_ascii.h dxflib/dl_writer.h
+    dxflib/dl_dxf.cpp dxflib/dl_writer_ascii.cpp )
+target_include_directories(DXF PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/dxflib )
+
+add_subdirectory(cairo)
+add_subdirectory(stl)
+add_subdirectory(dxf)
 add_subdirectory(camotics)
+
 add_executable(CAMotics
     $<TARGET_OBJECTS:camotics-main>
     $<TARGET_OBJECTS:camotics-contour>
@@ -41,10 +49,13 @@ add_executable(CAMotics
     $<TARGET_OBJECTS:camotics-sim>
     $<TARGET_OBJECTS:camotics-value>
     $<TARGET_OBJECTS:camotics-view>
+    $<TARGET_OBJECTS:camotics-cairo>
+    $<TARGET_OBJECTS:camotics-stl>
+    $<TARGET_OBJECTS:camotics-dxf>
     "camotics.cpp")
 target_compile_definitions(CAMotics PRIVATE USING_CBANG)
 target_link_libraries(CAMotics PRIVATE
-    Gcode
+    Gcode DXF
     Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL Qt5::Network Qt5::WebSockets
     ${CBANG_LIBRARIES} 
 )
