@@ -18,10 +18,6 @@ add_library(Gcode STATIC
     $<TARGET_OBJECTS:gcode-plan>
 )
 target_compile_definitions(Gcode PRIVATE USING_CBANG)
-add_executable(gcodetool "gcodetool.cpp" )
-target_link_libraries(gcodetool PRIVATE 
-    Gcode 
-)
 
 add_library(DXF STATIC 
     dxflib/dl_attributes.h dxflib/dl_codes.h dxflib/dl_creationadapter.h
@@ -59,3 +55,15 @@ target_link_libraries(CAMotics PRIVATE
     Qt5::Widgets Qt5::Core Qt5::Gui Qt5::OpenGL Qt5::Network Qt5::WebSockets
     ${CBANG_LIBRARIES} 
 )
+
+add_executable(gcodetool 
+    $<TARGET_OBJECTS:camotics-main>
+    "${CMAKE_CURRENT_BINARY_DIR}/build_info.cpp"
+    "gcodetool.cpp" )
+target_compile_definitions(gcodetool PRIVATE USING_CBANG)
+target_link_libraries(gcodetool PRIVATE
+    Gcode
+    ${CBANG_LIBRARIES}
+)
+
+
