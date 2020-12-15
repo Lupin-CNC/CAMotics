@@ -47,3 +47,8 @@ set(sources
 )
 add_library(gcode-main OBJECT "${headers}" "${sources}")
 target_compile_definitions(gcode-main PRIVATE USING_CBANG)
+
+if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+  install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/camotics/gcode)
+  install(TARGETS gcode-main EXPORT CamoticsGcode-targets)
+endif()

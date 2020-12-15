@@ -33,4 +33,7 @@ find_package(Qt5 ${QT_VERSION}
 message(STATUS "Qt version: ${QT_VERSION}")
 message(STATUS "Qt spec: ${QT_MKSPEC}")
 
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+
 add_subdirectory(src)

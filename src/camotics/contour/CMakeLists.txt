@@ -44,3 +44,8 @@ set(sources
 
 add_library(camotics-contour OBJECT "${headers}" "${sources}")
 target_compile_definitions(camotics-contour PRIVATE USING_CBANG)
+
+if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+  install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/camotics/contour)
+  install(TARGETS camotics-contour EXPORT CamoticsCore-targets)
+endif()

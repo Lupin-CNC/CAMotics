@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+set(CAMOTICS_LIBRARIES Camotics-GCode)
+# Capturing values from configure (optional)
+set_and_check(CAMOTICS_INCLUDE_DIR "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@")
+
+get_filename_component(SELF_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include(${SELF_DIR}/Camotics-targets.cmake)

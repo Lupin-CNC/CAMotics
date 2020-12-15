@@ -38,3 +38,8 @@ set(sources
 )
 add_library(camotics-sim OBJECT "${headers}" "${sources}")
 target_compile_definitions(camotics-sim PRIVATE USING_CBANG)
+
+if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+  install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/camotics/sim)
+  install(TARGETS camotics-sim EXPORT CamoticsCore-targets)
+endif()

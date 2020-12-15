@@ -32,3 +32,8 @@ set(sources
 )
 add_library(gcode-plan OBJECT "${headers}" "${sources}")
 target_compile_definitions(gcode-plan PRIVATE USING_CBANG)
+
+if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+  install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/camotics/gcode/plan)
+  install(TARGETS gcode-plan EXPORT CamoticsGcode-targets)
+endif()
