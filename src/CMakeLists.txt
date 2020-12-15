@@ -97,6 +97,10 @@ target_link_libraries(gcodetool PRIVATE
 )
 
 # Install target
+install(TARGETS gcodetool  DESTINATION ${CMAKE_INSTALL_BINDIR} )
+install(TARGETS CAMotics DESTINATION ${CMAKE_INSTALL_BINDIR} )
+
+
 set_target_properties(CamoticsGcode PROPERTIES
     FRAMEWORK       FALSE
     VERSION             ${Camotics_VERSION}
@@ -104,7 +108,7 @@ set_target_properties(CamoticsGcode PROPERTIES
     DEFINE_SYMBOL       MAKE_CBANG_LIB
 )
 install(TARGETS CamoticsGcode
-    EXPORT          CamoticsGcode-targets
+    EXPORT          Camotics-targets
     RUNTIME         DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY         DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE         DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -119,7 +123,7 @@ set_target_properties(CamoticsDXF PROPERTIES
     DEFINE_SYMBOL       MAKE_CBANG_LIB
 )
 install(TARGETS CamoticsDXF
-    EXPORT          CamoticsDXF-targets
+    EXPORT          Camotics-targets
     RUNTIME         DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY         DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE         DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -134,7 +138,7 @@ set_target_properties(CamoticsCore PROPERTIES
     DEFINE_SYMBOL       MAKE_CBANG_LIB
 )
 install(TARGETS CamoticsCore
-    EXPORT          CamoticsCore-targets
+    EXPORT          Camotics-targets
     RUNTIME         DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY         DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE         DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -142,9 +146,10 @@ install(TARGETS CamoticsCore
     PUBLIC_HEADER   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/camotics
 )
 
-#install(EXPORT Camotics-targets
-#    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/camotics
-#)
+install(EXPORT Camotics-targets
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/camotics
+)
+
 configure_package_config_file(
     ${Camotics_SOURCE_DIR}/cmake/camoticsConfig.cmake.in ${CMAKE_BINARY_DIR}/camoticsConfig.cmake
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/camotics
