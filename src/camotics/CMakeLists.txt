@@ -3,11 +3,12 @@ add_subdirectory(machine)
 add_subdirectory(opt)
 add_subdirectory(probe)
 add_subdirectory(project)
-add_subdirectory(qt)
 add_subdirectory(render)
 add_subdirectory(sim)
 add_subdirectory(value)
+
 add_subdirectory(view)
+add_subdirectory(qt)
 
 set(headers
     Application.h
@@ -24,3 +25,8 @@ set(sources Application.cpp CommandLineApp.cpp ConcurrentTaskManager.cpp
 
 add_library(camotics-main OBJECT "${headers}" "${sources}")
 target_compile_definitions(camotics-main PRIVATE USING_CBANG)
+
+if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+  install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/camotics)
+  install(TARGETS camotics-main EXPORT CamoticsCore-targets)
+endif()

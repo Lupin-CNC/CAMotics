@@ -26,3 +26,8 @@ set(sources
 )
 add_library(gcode-interp OBJECT "${headers}" "${sources}")
 target_compile_definitions(gcode-interp PRIVATE USING_CBANG)
+
+if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+  install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/camotics/gcode/interp)
+  install(TARGETS gcode-interp EXPORT CamoticsGcode-targets)
+endif()

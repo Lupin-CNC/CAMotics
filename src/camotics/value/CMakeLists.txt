@@ -13,3 +13,8 @@ set(sources
 )
 add_library(camotics-value OBJECT "${headers}" "${sources}")
 target_compile_definitions(camotics-value PRIVATE USING_CBANG)
+
+if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+  install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/camotics/value)
+  install(TARGETS camotics-value EXPORT CamoticsCore-targets)
+endif()

@@ -16,3 +16,8 @@ set(sources
 )
 add_library(camotics-project OBJECT "${headers}" "${sources}")
 target_compile_definitions(camotics-project PRIVATE USING_CBANG)
+
+if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+  install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/camotics/project)
+  install(TARGETS camotics-project EXPORT CamoticsCore-targets)
+endif()
