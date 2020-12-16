@@ -18,3 +18,8 @@ target_include_directories(camotics-stl PRIVATE
 )
 target_compile_definitions(camotics-stl PRIVATE USING_CBANG )
 set_property(TARGET camotics-stl PROPERTY POSITION_INDEPENDENT_CODE 1 )
+
+if("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+  install(FILES ${headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/camotics/stl)
+  install(TARGETS camotics-stl EXPORT CamoticsCore-targets)
+endif()

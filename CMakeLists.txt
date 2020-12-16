@@ -33,6 +33,13 @@ find_package(Qt5 ${QT_VERSION}
 message(STATUS "Qt version: ${QT_VERSION}")
 message(STATUS "Qt spec: ${QT_MKSPEC}")
 
+find_package(Boost REQUIRED
+    date_time
+    filesystem
+    iostreams
+    regex
+)
+
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
